@@ -1119,8 +1119,11 @@ class FieldInfoTestCase extends FieldTestCase {
           'test_setting' => 999)));
     field_create_instance($instance);
 
+    $info = entity_get_info('test_entity');
     $instances = field_info_instances('test_entity', $instance['bundle']);
-    $this->assertEqual(count($instances), 1, t('One instance shows up in info when attached to a bundle.'));
+    $this->assertEqual(count($instances), 1, format_string('One instance shows up in info when attached to a bundle on a @label.', array(
+      '@label' => $info['label']
+    )));
     $this->assertTrue($instance < $instances[$instance['field_name']], t('Instance appears in info correctly'));
 
     // Test a valid entity type but an invalid bundle.
@@ -1649,6 +1652,18 @@ class FieldFormTestCase extends FieldTestCase {
     field_create_instance($instance_no_access);
 
     $langcode = LANGUAGE_NONE;
+
+    // Test that the form structure includes full information for each delta
+    // apart from #access.
+    $entity_type = 'test_entity';
+    $entity = field_test_create_stub_entity(0, 0, $this->instance['bundle']);
+
+    $form = array();
+    $form_state = form_state_defaults();
+    field_attach_form($entity_type, $entity, $form, $form_state);
+
+    $this->assertEqual($form[$field_name_no_access][$langcode][0]['value']['#entity_type'], $entity_type, 'The correct entity type is set in the field structure.');
+    $this->assertFalse($form[$field_name_no_access]['#access'], 'Field #access is FALSE for the field without edit access.');
 
     // Display creation form.
     $this->drupalGet('test-entity/add/test-bundle');
@@ -2794,7 +2809,7 @@ class FieldTranslationsTestCase extends FieldTestCase {
     $options = array();
     $entities = array();
     $entity_type = 'test_entity';
-    $entity_count = mt_rand(2, 5);
+    $entity_count = 5;
     $available_languages = field_available_languages($this->entity_type, $this->field);
 
     for ($id = 1; $id <= $entity_count; ++$id) {

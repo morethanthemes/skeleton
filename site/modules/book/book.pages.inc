@@ -38,6 +38,15 @@ function book_render() {
  *   format determined by the $type parameter.
  */
 function book_export($type, $nid) {
+  // Check that the node exists and that the current user has access to it.
+  $node = node_load($nid);
+  if (!$node) {
+    return MENU_NOT_FOUND;
+  }
+  if (!node_access('view', $node)) {
+    return MENU_ACCESS_DENIED;
+  }
+
   $type = drupal_strtolower($type);
 
   $export_function = 'book_export_' . $type;
@@ -137,7 +146,7 @@ function book_outline_form($form, &$form_state, $node) {
   $form['remove'] = array(
     '#type' => 'submit',
     '#value' => t('Remove from book outline'),
-    '#access' => $node->nid != $node->book['bid'] && $node->book['bid'],
+    '#access' => _book_node_is_removable($node),
     '#weight' => 20,
     '#submit' => array('book_remove_button_submit'),
   );
@@ -216,8 +225,7 @@ function book_remove_form($form, &$form_state, $node) {
  */
 function book_remove_form_submit($form, &$form_state) {
   $node = $form['#node'];
-  if ($node->nid != $node->book['bid']) {
-    // Only allowed when this is not a book (top-level page).
+  if (_book_node_is_removable($node)) {
     menu_link_delete($node->book['mlid']);
     db_delete('book')
       ->condition('nid', $node->nid)

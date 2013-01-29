@@ -676,7 +676,7 @@ function hook_field_is_empty($item, $field) {
 }
 
 /**
- * @} End of "defgroup field_types"
+ * @} End of "defgroup field_types".
  */
 
 /**
@@ -690,11 +690,10 @@ function hook_field_is_empty($item, $field) {
  * which widget to use. Widget types are defined by implementing
  * hook_field_widget_info().
  *
- * Widgets are
- * @link http://api.drupal.org/api/drupal/developer--topics--forms_api_reference.html Form API @endlink
- * elements with additional processing capabilities. Widget hooks are typically
- * called by the Field Attach API during the creation of the field form
- * structure with field_attach_form().
+ * Widgets are @link forms_api_reference.html Form API @endlink elements with
+ * additional processing capabilities. Widget hooks are typically called by the
+ * Field Attach API during the creation of the field form structure with
+ * field_attach_form().
  *
  * @see field
  * @see field_types
@@ -729,6 +728,9 @@ function hook_field_is_empty($item, $field) {
  *       - FIELD_BEHAVIOR_DEFAULT: (default) If the widget accepts default
  *         values.
  *       - FIELD_BEHAVIOR_NONE: if the widget does not support default values.
+ *   - weight: (optional) An integer to determine the weight of this widget
+ *     relative to other widgets in the Field UI when selecting a widget for a
+ *     given field instance.
  *
  * @see hook_field_widget_info_alter()
  * @see hook_field_widget_form()
@@ -738,7 +740,7 @@ function hook_field_is_empty($item, $field) {
  * @see hook_field_widget_settings_form()
  */
 function hook_field_widget_info() {
-    return array(
+  return array(
     'text_textfield' => array(
       'label' => t('Text field'),
       'field types' => array('text'),
@@ -765,6 +767,8 @@ function hook_field_widget_info() {
         'multiple values' => FIELD_BEHAVIOR_DEFAULT,
         'default value' => FIELD_BEHAVIOR_DEFAULT,
       ),
+      // As an advanced widget, force it to sink to the bottom of the choices.
+      'weight' => 2,
     ),
   );
 }
@@ -935,6 +939,38 @@ function hook_field_widget_WIDGET_TYPE_form_alter(&$element, &$form_state, $cont
 }
 
 /**
+ * Alters the widget properties of a field instance before it gets displayed.
+ *
+ * Note that instead of hook_field_widget_properties_alter(), which is called
+ * for all fields on all entity types,
+ * hook_field_widget_properties_ENTITY_TYPE_alter() may be used to alter widget
+ * properties for fields on a specific entity type only.
+ *
+ * This hook is called once per field per added or edit entity. If the result
+ * of the hook involves reading from the database, it is highly recommended to
+ * statically cache the information.
+ *
+ * @param $widget
+ *   The instance's widget properties.
+ * @param $context
+ *   An associative array containing:
+ *   - entity_type: The entity type; e.g., 'node' or 'user'.
+ *   - entity: The entity object.
+ *   - field: The field that the widget belongs to.
+ *   - instance: The instance of the field.
+ *
+ * @see hook_field_widget_properties_ENTITY_TYPE_alter()
+ */
+function hook_field_widget_properties_alter(&$widget, $context) {
+  // Change a widget's type according to the time of day.
+  $field = $context['field'];
+  if ($context['entity_type'] == 'node' && $field['field_name'] == 'field_foo') {
+    $time = date('H');
+    $widget['type'] = $time < 12 ? 'widget_am' : 'widget_pm';
+  }
+}
+
+/**
  * Flag a field-level validation error.
  *
  * @param $element
@@ -954,12 +990,12 @@ function hook_field_widget_WIDGET_TYPE_form_alter(&$element, &$form_state, $cont
  *   An associative array containing the current state of the form.
  */
 function hook_field_widget_error($element, $error, $form, &$form_state) {
-  form_error($element['value'], $error['message']);
+  form_error($element, $error['message']);
 }
 
 
 /**
- * @} End of "defgroup field_widget"
+ * @} End of "defgroup field_widget".
  */
 
 
@@ -1040,8 +1076,8 @@ function hook_field_formatter_info() {
  * Perform alterations on Field API formatter types.
  *
  * @param $info
- *   Array of informations on formatter types exposed by
- *   hook_field_field_formatter_info() implementations.
+ *   An array of information on formatter types exposed by
+ *   hook_field_formatter_info() implementations.
  */
 function hook_field_formatter_info_alter(&$info) {
   // Add a setting to a formatter type.
@@ -1198,7 +1234,7 @@ function hook_field_formatter_view($entity_type, $entity, $field, $instance, $la
 }
 
 /**
- * @} End of "defgroup field_formatter"
+ * @} End of "defgroup field_formatter".
  */
 
 /**
@@ -1554,11 +1590,11 @@ function hook_field_attach_delete_bundle($entity_type, $bundle, $instances) {
 }
 
 /**
- * @} End of "defgroup field_attach"
+ * @} End of "defgroup field_attach".
  */
 
 /**
- * @ingroup field_storage
+ * @addtogroup field_storage
  * @{
  */
 
@@ -2327,38 +2363,6 @@ function hook_field_extra_fields_display_alter(&$displays, $context) {
 }
 
 /**
- * Alters the widget properties of a field instance before it gets displayed.
- *
- * Note that instead of hook_field_widget_properties_alter(), which is called
- * for all fields on all entity types,
- * hook_field_widget_properties_ENTITY_TYPE_alter() may be used to alter widget
- * properties for fields on a specific entity type only.
- *
- * This hook is called once per field per added or edit entity. If the result
- * of the hook involves reading from the database, it is highly recommended to
- * statically cache the information.
- *
- * @param $widget
- *   The instance's widget properties.
- * @param $context
- *   An associative array containing:
- *   - entity_type: The entity type; e.g., 'node' or 'user'.
- *   - entity: The entity object.
- *   - field: The field that the widget belongs to.
- *   - instance: The instance of the field.
- *
- * @see hook_field_widget_properties_ENTITY_TYPE_alter()
- */
-function hook_field_widget_properties_alter(&$widget, $context) {
-  // Change a widget's type according to the time of day.
-  $field = $context['field'];
-  if ($context['entity_type'] == 'node' && $field['field_name'] == 'field_foo') {
-    $time = date('H');
-    $widget['type'] = $time < 12 ? 'widget_am' : 'widget_pm';
-  }
-}
-
-/**
  * Alters the widget properties of a field instance on a given entity type
  * before it gets displayed.
  *
@@ -2391,11 +2395,11 @@ function hook_field_widget_properties_ENTITY_TYPE_alter(&$widget, $context) {
 }
 
 /**
- * @} End of "ingroup field_storage"
+ * @} End of "addtogroup field_storage".
  */
 
 /**
- * @ingroup field_crud
+ * @addtogroup field_crud
  * @{
  */
 
@@ -2644,7 +2648,7 @@ function hook_field_storage_purge($entity_type, $entity, $field, $instance) {
 }
 
 /**
- * @} End of "ingroup field_crud"
+ * @} End of "addtogroup field_crud".
  */
 
 /**
@@ -2675,5 +2679,5 @@ function hook_field_access($op, $field, $entity_type, $entity, $account) {
 }
 
 /**
- * @} End of "addtogroup hooks"
+ * @} End of "addtogroup hooks".
  */
