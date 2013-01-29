@@ -8,7 +8,7 @@ You are welcome however to grab this code and have the demonstration site runnin
 Installation instructions
 --------------
 + Checkout this repository and place the “site” folder under your apache path. 
-+ Create an empty MySQL database and import there the “db_instances/corkedscrewer.sql” file.
++ Create an empty MySQL database and import there the “db_instances/db_instance.sql” file.
 + Edit the “sites/default/settings.php” file and point the drupal installation to the newly created database.
 
 Now you are ready to login to the demonstration site by following the URL where your apache is serving the “sites” folder. 
