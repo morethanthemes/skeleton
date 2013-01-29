@@ -72,7 +72,7 @@ function skeletontheme_breadcrumb($variables) {
     $output = '<h2 class="element-invisible">' . t('You are here') . '</h2>';
     // comment below line to hide current page to breadcrumb
 	$breadcrumb[] = drupal_get_title();
-    $output .= '<nav class="breadcrumb">' . implode('<span class="sep">»</span>', $breadcrumb) . '</nav>';
+    $output .= '<div class="breadcrumb">' . implode('<span class="sep">»</span>', $breadcrumb) . '</div>';
     return $output;
   }
 }
