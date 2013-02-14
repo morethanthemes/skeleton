@@ -1,8 +1,6 @@
 <div id="wrap">
     <div class="container">
         
-        <div class="resize"></div>
-        
         <!-- #header -->
         <div id="header" class="sixteen columns clearfix">
             <div class="inner">

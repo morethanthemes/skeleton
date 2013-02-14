@@ -1598,8 +1598,3 @@ a.button.brown span.btn_caption {
 color: #cea03b;
 text-shadow: 0 1px 0 #37290c;
 }
-
-
-/* Resize */
-
-.resize { background: url(../images/resize.png) repeat scroll 0 0 transparent; bottom: 0; height: 80px; position: fixed; right: 0;  width: 80px; z-index:1; }
