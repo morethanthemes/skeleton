@@ -444,7 +444,7 @@ background-image: linear-gradient(top, #fcfcfc 0%, #ececec 100%);
 /* IE6-9 */ 
 filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#ececec'); }
 	
-#navigation ul li, #navigation ul.sf-menu li { position: relative; list-style:none; border-right: 1px solid #e3e3e3; }
+#navigation ul li, #navigation ul.sf-menu li { position: relative; list-style:none; border-right: 1px solid #e3e3e3; background:none; }
 
 #navigation ul li a, #navigation ul.sf-menu li a { padding: 15px 25px; text-decoration: none; line-height:120%;
 display: block; font-weight: bold; text-shadow: 1px 1px 0px #fff; outline:none; }
