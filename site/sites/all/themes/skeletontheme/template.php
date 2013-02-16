@@ -76,3 +76,21 @@ function skeletontheme_breadcrumb($variables) {
     return $output;
   }
 }
+
+/**
+ * Add Javascript for responsive mobile menu
+ */
+drupal_add_js(drupal_get_path('theme', 'skeletontheme') .'/js/jquery.mobilemenu.js');
+
+drupal_add_js('jQuery(document).ready(function($) { 
+
+$("#navigation .content > ul").mobileMenu({
+	prependTo: "#navigation",
+	combine: false,
+	switchWidth: 768,
+	topOptionText: "Select page"
+});
+
+});',
+array('type' => 'inline', 'scope' => 'header'));
+//EOF:Javascript
