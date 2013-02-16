@@ -47,49 +47,10 @@
 ================================================== */
 	
 	/* iPad Portrait/Browser */
-	@media only screen and (min-width: 768px) and (max-width: 991px) {
-	
-	#navigation ul { border-radius:0px; }
-	
-	#navigation ul li a { font-size: .9em;padding: 10px 15px; }
-	
-	#navigation ul { min-width: 700px; }
-	
-	.resize { display: none; }
-	
-	#header #site-slogan { font-size: 1.25em; }
-	
-	}
+	@media only screen and (min-width: 768px) and (max-width: 991px) {}
 	
 	/* Mobile/Browser */
 	@media only screen and (max-width: 767px) {
-	
-	#header #site-slogan { font-size: 1.25em; }
-	
-	#navigation { margin: 10px 0px; }
-	
-	#navigation ul,
-	#navigation ul li,
-	#navigation ul li a {
-	float: none;
-	background: none;
-	border: none;
-	box-shadow:none;
-	-moz-box-shadow:none;
-	-webkit-box-shadow:none;
-	behavior:none;
-	}
-	
-	#navigation ul li a,
-	#navigation ul li.active a,
-	#navigation ul li a:hover,
-	#navigation ul li:hover a {
-	border: none;
-	padding: 2px 0;
-	line-height: 150%;
-	background: transparent;
-	background-image: none;
-	}
 
 	#breadcrumb { display: none; }
 
@@ -105,7 +66,6 @@
 	.four_fifth,
 	.one_sixth,
 	.five_sixth {width: 100%;}
-	.resize {display: none;}
 
 	}
 	
