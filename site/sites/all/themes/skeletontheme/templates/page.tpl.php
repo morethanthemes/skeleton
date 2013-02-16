@@ -38,18 +38,15 @@
             <?php if ($page['header']) : ?>
                 <?php print drupal_render($page['header']); ?>
                 <?php else : ?>
-                <?php print theme('links__system_main_menu', array(
-                'links' => $main_menu,
-                'attributes' => array(
-                    'id' => 'main-menu-links',
-                    'class' => array('menu', 'clearfix'),
-                ),
-                'heading' => array(
-                    'text' => t('Main menu'),
-                    'level' => 'h2',
-                    'class' => array('element-invisible'),
-                ),
-                )); ?>
+                <?php 
+				if (module_exists('i18n_menu')) {
+				$main_menu_tree = i18n_menu_translated_tree(variable_get('menu_main_links_source', 'main-menu'));
+				} else { 
+				$main_menu_tree = menu_tree(variable_get('menu_main_links_source', 'main-menu')); 
+				} ?>
+				<div class="content">
+				<?php print drupal_render($main_menu_tree); ?>
+                </div>
             <?php endif; ?>
             </div>
             
@@ -73,7 +70,7 @@
             
             <div id="main">
             
-                <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
+                <?php if ($page['highlighted']): ?><div id="highlighted" class="clearfix"><?php print render($page['highlighted']); ?></div><?php endif; ?>
                 
                 <?php print render($title_prefix); ?>
                 
