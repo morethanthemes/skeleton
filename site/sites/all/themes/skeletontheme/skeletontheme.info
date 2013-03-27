@@ -10,7 +10,10 @@ stylesheets[all][] = css/buttons.css
 stylesheets[all][] = css/layout.css
 stylesheets[all][] = color/colors.css
 
+regions[header_top_left] = Header top left
+regions[header_top_right] = Header top right
 
+regions[header_right] = Header right
 regions[header] = Header
 regions[highlighted] = Highlighted
 
