@@ -69,7 +69,7 @@
         
             <?php if ($messages): ?>
                 <div id="messages">
-                  <?php print $messages; ?>
+                <?php print $messages; ?>
                 </div><!-- /#messages -->
             <?php endif; ?>
         

@@ -12,7 +12,6 @@ stylesheets[all][] = color/colors.css
 
 
 regions[header] = Header
-
 regions[highlighted] = Highlighted
 
 regions[content] = Content
