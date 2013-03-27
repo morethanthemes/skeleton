@@ -80,7 +80,7 @@ letter-spacing: -2px; text-shadow: 0px 1px 0px #FFF; }
 
 #header #site-name a:hover { color: #3253ad; }
 
-#header #site-slogan { margin: 0; padding: 0; font-size: 24px; line-height: 28px; cletter-spacing: -1px; }	
+#header #site-slogan { margin: 0; padding: 0; font-size: 24px; line-height: 28px; letter-spacing: -1px; }	
 
 /* Breadcrumb */
 
@@ -103,7 +103,7 @@ text-shadow: 1px 1px 0px #fff; }
 
 #wrap { border-top:5px solid; }
 
-#wrap #content { float:right; }
+#wrap #content { float:left; }
 
 #main { margin-bottom: 20px; }
 
@@ -228,9 +228,9 @@ border-left: 1px solid; border-right: 1px solid; height: 40px; margin-left: -36p
 
 /* Sidebar */
 
-#wrap #sidebar { float:left; }
+#wrap #sidebar-first, #wrap #sidebar-second { float:left; }
 
-#sidebar .block { padding: 0 0 20px 0; }
+#sidebar-first .block, #sidebar-second .block { padding: 0 0 20px 0; }
 
 /* Messages */
 
