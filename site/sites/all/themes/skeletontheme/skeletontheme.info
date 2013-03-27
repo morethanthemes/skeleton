@@ -17,6 +17,7 @@ regions[highlighted] = Highlighted
 
 regions[content] = Content
 regions[sidebar_first] = Sidebar first
+regions[sidebar_second] = Sidebar second
 
 regions[featured_left] = Featured left
 regions[featured_right] = Featured right

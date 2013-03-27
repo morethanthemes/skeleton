@@ -52,10 +52,19 @@
             
         </div><!-- /#navigation -->
         
-        <?php if ($page['sidebar_first']) { ?>
+        <?php if ($page['sidebar_first']): ?>
+        <!-- #sidebar-first -->
+        <div id="sidebar-first" class="five columns">
+            <?php print render($page['sidebar_first']); ?>
+        </div><!-- /#sidebar-first -->
+        <?php endif; ?>
+        
+        <?php if ($page['sidebar_first'] && $page['sidebar_second']) { ?>
+        <div id="content" class="six columns">
+        <?php } elseif ($page['sidebar_first'] || $page['sidebar_second']) { ?>
         <div id="content" class="eleven columns">
-        <?php } else { ?>
-        <div id="content" class="sixteen columns clearfix">
+		<?php } else { ?>
+        <div id="content" class="sixteen columns clearfix">    
         <?php } ?>
         
             <?php if ($messages): ?>
@@ -103,10 +112,10 @@
         
         </div><!-- /#content -->
         
-        <?php if ($page['sidebar_first']): ?>
+        <?php if ($page['sidebar_second']): ?>
         <!-- #sidebar-first -->
-        <div id="sidebar" class="five columns">
-            <?php print render($page['sidebar_first']); ?>
+        <div id="sidebar-second" class="five columns">
+            <?php print render($page['sidebar_second']); ?>
         </div><!-- /#sidebar-first -->
         <?php endif; ?>
         
