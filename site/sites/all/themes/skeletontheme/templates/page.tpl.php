@@ -1,8 +1,37 @@
 <div id="wrap">
     <div class="container">
         
+        <?php if ($page['header_top_left'] || $page['header_top_right']): ?>
+        <!-- #header-top -->
+        <div id="header-top" class="sixteen columns clearfix">
+            
+            <?php if ($page['header_top_left'] && $page['header_top_right']) { ?>
+            <div class="one_half">
+            <?php print render($page['header_top_left']); ?>
+            </div>
+            
+            <div class="one_half last">
+            <?php print render($page['header_top_right']); ?>
+            </div>
+            <?php } else { ?>
+                
+            <?php print render($page['header_top_left']); ?>
+            <?php print render($page['header_top_right']); ?>
+            
+            <?php } ?>
+            
+        </div><!-- /#header-top -->
+        <?php endif; ?>
+        
+        <div class="clear"></div>
+        
         <!-- #header -->
-        <div id="header" class="sixteen columns clearfix">
+        <?php if ($page['header_right']) { ?>
+        <div id="header" class="five columns clearfix">
+		<?php } else { ?>
+        <div id="header" class="sixteen columns clearfix">   
+        <?php } ?>
+        
             <div class="inner">
     
                 <?php if ($logo): ?>
@@ -30,6 +59,19 @@
                 <?php endif; ?>
             </div>
         </div><!-- /#header -->
+        
+        <?php if ($page['header_right']) : ?>
+        <!-- #header-right -->
+        <div id="header-right" class="eleven columns clearfix">
+        
+        	 <div class="inner">
+			<?php print render($page['header_right']); ?>
+        	</div>
+            
+        </div><!-- /#header-right -->
+        <?php endif; ?>
+        
+        <div class="clear"></div>
         
         <!-- #navigation -->
         <div id="navigation" class="sixteen columns clearfix">
