@@ -33,6 +33,9 @@ regions[help] = Help
 regions[page_top] = Page top
 regions[page_bottom] = Page bottom
 
+settings[responsive_menu_state]= 1
+settings[responsive_menu_switchwidth]='760'
+settings[responsive_menu_topoptiontext]= 'Select a page'
 
 ; Information added by drupal.org packaging script on 2013-02-17
 version = "7.x-1.2"

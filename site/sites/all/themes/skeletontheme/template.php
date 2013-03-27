@@ -80,17 +80,24 @@ function skeletontheme_breadcrumb($variables) {
 /**
  * Add Javascript for responsive mobile menu
  */
-drupal_add_js(drupal_get_path('theme', 'skeletontheme') .'/js/jquery.mobilemenu.js');
+if (theme_get_setting('responsive_menu_state')) {
 
-drupal_add_js('jQuery(document).ready(function($) { 
+	drupal_add_js(drupal_get_path('theme', 'skeletontheme') .'/js/jquery.mobilemenu.js');
 
-$("#navigation .content > ul").mobileMenu({
-	prependTo: "#navigation",
-	combine: false,
-	switchWidth: 768,
-	topOptionText: "Select page"
-});
+	$responsive_menu_switchwidth=theme_get_setting('responsive_menu_switchwidth');
+	$responsive_menu_topoptiontext=theme_get_setting('responsive_menu_topoptiontext');
+	
+	drupal_add_js('jQuery(document).ready(function($) { 
+	
+	$("#navigation .content > ul").mobileMenu({
+		prependTo: "#navigation",
+		combine: false,
+		switchWidth: '.$responsive_menu_switchwidth.',
+		topOptionText: "'.$responsive_menu_topoptiontext.'"
+	});
+	
+	});',
+	array('type' => 'inline', 'scope' => 'header'));
 
-});',
-array('type' => 'inline', 'scope' => 'header'));
+}
 //EOF:Javascript
