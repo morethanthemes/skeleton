@@ -194,6 +194,8 @@ background: url(../images/light/arrow_bullet.png) no-repeat 10px; text-decoratio
 
 .block ul.menu ul li a:hover { color:#333333; background:none; }
 
+.block.block-superfish ul.menu li a { background:none; }
+
 /* Comments */
 
 .comment h2.title { margin-bottom: 1em; }
@@ -515,7 +517,6 @@ background: #f0f0f0 url('../images/light/arrow_bullet.png') no-repeat 90% 50%; }
 #navigation li.expanded:hover > a, #menu li.expanded:active > a,
 #navigation li.menuparent:hover > a, #menu li.menuparent:active > a {    
 background: #f0f0f0 url('../images/dark/arrow_bullet.png') no-repeat 90% 50%; }  
-/* 
 	
 /* 
 * Superfish support: Reset background/border
