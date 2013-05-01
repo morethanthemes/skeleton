@@ -13,7 +13,6 @@
   border: 1px solid #ffffff;
   color: #37731f;
   padding: 0.75em 1em;
-  white-space: nowrap;
 }
 .sf-menu.sf-style-spring a.sf-with-ul {
   padding-right: 2.25em;
@@ -26,7 +25,7 @@
   border: 0;
 }
 .sf-menu.sf-style-spring span.sf-description {
-  color: #13a;
+  color: #37731f;
   display: block;
   font-size: 0.8em;
   line-height: 1.5em;

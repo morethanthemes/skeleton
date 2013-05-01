@@ -14,7 +14,6 @@
   color: #f1dec6;
   font-weight: bold;
   padding: 0.75em 1em;
-  white-space: nowrap;
 }
 .sf-menu.sf-style-coffee a.sf-with-ul {
   padding-right: 2.25em;
@@ -27,7 +26,7 @@
   border: 0;
 }
 .sf-menu.sf-style-coffee span.sf-description {
-  color: #13a;
+  color: #f1dec6;
   display: block;
   font-size: 0.8em;
   line-height: 1.5em;
