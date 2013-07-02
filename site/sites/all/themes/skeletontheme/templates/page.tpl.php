@@ -188,7 +188,7 @@
 	</div>
         
 	<div id="footer" >
-        <div class="container" class="sixteen columns clearfix">
+        <div class="container">
         	<div class="sixteen columns clearfix">
         
                 <div class="one_third">
