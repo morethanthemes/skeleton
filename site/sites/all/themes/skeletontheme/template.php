@@ -106,16 +106,17 @@ if (theme_get_setting('responsive_menu_state')) {
 
 	drupal_add_js(drupal_get_path('theme', 'skeletontheme') .'/js/jquery.mobilemenu.js');
 
-	$responsive_menu_switchwidth=theme_get_setting('responsive_menu_switchwidth');
-	$responsive_menu_topoptiontext=theme_get_setting('responsive_menu_topoptiontext');
+    $responsive_menu_switchwidth = (int) theme_get_setting('responsive_menu_switchwidth','skeletontheme');
+    $responsive_menu_topoptiontext = theme_get_setting('responsive_menu_topoptiontext','skeletontheme');
+    drupal_add_js(array('skeletontheme' => array('topoptiontext' => $responsive_menu_topoptiontext)), 'setting');
 	
 	drupal_add_js('jQuery(document).ready(function($) { 
 	
 	$("#navigation .content > ul").mobileMenu({
 		prependTo: "#navigation",
 		combine: false,
-		switchWidth: '.$responsive_menu_switchwidth.',
-		topOptionText: "'.$responsive_menu_topoptiontext.'"
+        switchWidth: '.$responsive_menu_switchwidth.',
+        topOptionText: Drupal.settings.skeletontheme[\'topoptiontext\']
 	});
 	
 	});',
